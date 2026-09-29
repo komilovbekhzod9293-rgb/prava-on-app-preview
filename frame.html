@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru" translate="no" class="notranslate">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+  <title>Prava On — просмотр</title>
+  <style>
+    :root {
+      --bg: #0e1116;
+      --bezel: #1b2029;
+      --edge: #2b3240;
+      --text: #aab3c2;
+      --accent: #4f8cff;
+      --w: 390px;
+      --h: 844px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+      font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; padding: 16px; min-height: 100%; }
+    .bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    button, a.open { appearance: none; border: 1px solid var(--edge); background: var(--bezel); color: var(--text);
+      padding: 8px 14px; border-radius: 10px; font: inherit; cursor: pointer; text-decoration: none; }
+    button[aria-pressed="true"] { border-color: var(--accent); color: #fff; }
+    button:focus-visible, a.open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .device { padding: 12px; background: var(--bezel); border: 2px solid var(--edge); border-radius: 46px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .55); }
+    .screen { width: var(--w); height: var(--h); max-height: calc(100vh - 130px); border-radius: 34px;
+      overflow: hidden; background: #fff; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; }
+    /* On a real phone the bezel disappears and the app fills the screen. */
+    @media (max-width: 480px) {
+      body { padding: 0; gap: 0; }
+      .bar { display: none; }
+      .device { padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; }
+      .screen { width: 100vw; height: 100vh; max-height: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar" role="group" aria-label="Размер экрана">
+    <button type="button" data-w="390" data-h="844" aria-pressed="true">iPhone 390×844</button>
+    <button type="button" data-w="360" data-h="740" aria-pressed="false">Android 360×740</button>
+    <a class="open" href="./" target="_blank" rel="noopener">Открыть отдельно</a>
+  </div>
+  <div class="device"><div class="screen"><iframe id="app" src="./" title="Prava On"></iframe></div></div>
+  <script>
+    var root = document.documentElement;
+    document.querySelectorAll('button[data-w]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        root.style.setProperty('--w', b.dataset.w + 'px');
+        root.style.setProperty('--h', b.dataset.h + 'px');
+        document.querySelectorAll('button[data-w]').forEach(function (x) {
+          x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
