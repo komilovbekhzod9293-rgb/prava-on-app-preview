@@ -1,0 +1,23 @@
+{
+ "fir": {
+  "width": 6.0,
+  "height": 12.24,
+  "cols": 4,
+  "rows": 2,
+  "asset": "fir_tree_01"
+ },
+ "fir_b": {
+  "width": 6.022,
+  "height": 10.2,
+  "cols": 4,
+  "rows": 2,
+  "asset": "fir_tree_01"
+ },
+ "leafy_b": {
+  "width": 7.588,
+  "height": 6.63,
+  "cols": 4,
+  "rows": 2,
+  "asset": "tree_small_02"
+ }
+}
